@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Homesickness Support Journal • Aligned Expat Roots</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Light-theme adaptation of Aligned Expat Roots */
+    --bg-primary:    #faf6f0;
+    --bg-secondary:  #fffdfa;
+    --bg-card:       #ffffff;
+    --accent-matcha: #8fb83e;
+    --accent-matcha-bright: #bfe07a;
+    --accent-coral:  #f4a39a;
+    --accent-coral-deep: #e87b71;
+    --accent-teal:   #5bb8aa;
+    --accent-teal-bright: #7dcfc4;
+    --watermelon:    #ff6b6e;
+    --sky:           #92bcd6;
+    --ocean:         #0d4a6b;
+    --driftwood:     #a89a85;
+    --text-dark:     #2b2b2b;
+    --text-body:     #4a443d;
+    --text-muted:    #8a7f70;
+    --border-soft:   rgba(168, 154, 133, 0.25);
+    --font-display:  'Fraunces', Georgia, serif;
+    --font-body:     'Space Grotesk', -apple-system, sans-serif;
+    --font-mono:     'JetBrains Mono', monospace;
+    --grad-text:     linear-gradient(115deg, #e87b71 0%, #8fb83e 45%, #5bb8aa 100%);
+    --grad-warm:     linear-gradient(135deg, #f4a39a 0%, #8fb83e 55%, #5bb8aa 100%);
+    --shadow-card:   0 8px 30px rgba(120, 100, 80, 0.10);
+    --shadow-soft:   0 2px 12px rgba(120, 100, 80, 0.07);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background:
+      radial-gradient(1200px 600px at 12% -5%, rgba(244,163,154,0.18), transparent 55%),
+      radial-gradient(1000px 600px at 95% 8%, rgba(125,207,196,0.16), transparent 50%),
+      radial-gradient(900px 700px at 50% 110%, rgba(191,224,122,0.14), transparent 55%),
+      var(--bg-primary);
+    color: var(--text-body);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 0 0 80px;
+  }
+
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- HEADER ---------- */
+  header.hero {
+    text-align: center;
+    padding: 64px 24px 40px;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 0.72rem;
+    color: var(--accent-teal);
+    margin-bottom: 22px;
+    font-weight: 500;
+  }
+  .hero h1 {
+    line-height: 0.98;
+    margin-bottom: 18px;
+  }
+  .hero h1 .line-script {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(2.1rem, 6vw, 3.6rem);
+    background: var(--grad-warm);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }
+  .hero h1 .line-grotesk {
+    display: block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    font-size: clamp(2.6rem, 8.5vw, 5.4rem);
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero p.sub {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    font-weight: 300;
+  }
+  .hero p.sub em {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--accent-coral-deep);
+    font-weight: 600;
+  }
+
+  /* ---------- CARD / FORM ---------- */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: 22px;
+    box-shadow: var(--shadow-card);
+    padding: 38px 34px;
+    margin-bottom: 30px;
+  }
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.55rem;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+  }
+  .card-title em { font-style: italic; color: var(--accent-coral-deep); }
+  .card-intro { color: var(--text-muted); margin-bottom: 26px; font-size: 0.96rem; }
+
+  .field { margin-bottom: 24px; }
+  .field label {
+    display: block;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--accent-teal);
+    margin-bottom: 9px;
+  }
+  .field .prompt {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  input[type="text"], input[type="date"], textarea, select {
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-dark);
+    background: #fdfbf7;
+    border: 1.5px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 13px 15px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    resize: vertical;
+  }
+  textarea { min-height: 96px; line-height: 1.55; }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--accent-matcha);
+    box-shadow: 0 0 0 3px rgba(143,184,62,0.16);
+  }
+  ::placeholder { color: #bbb0a0; }
+
+  /* mood chips */
+  .mood-row { display: flex; flex-wrap: wrap; gap: 9px; }
+  .mood-chip {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border-soft);
+    background: #fdfbf7;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.18s;
+    user-select: none;
+  }
+  .mood-chip:hover { border-color: var(--accent-coral); color: var(--accent-coral-deep); }
+  .mood-chip.active {
+    background: var(--grad-warm);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: var(--shadow-soft);
+  }
+
+  /* ---------- BUTTONS ---------- */
+  @keyframes buttonGlow {
+    0%   { box-shadow: 0 0 18px 3px rgba(143,184,62,0.45); }
+    33%  { box-shadow: 0 0 18px 3px rgba(244,163,154,0.45); }
+    66%  { box-shadow: 0 0 18px 3px rgba(91,184,170,0.45); }
+    100% { box-shadow: 0 0 18px 3px rgba(143,184,62,0.45); }
+  }
+  .btn {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.98rem;
+    letter-spacing: 0.01em;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 28px;
+    cursor: pointer;
+    transition: transform 0.18s, filter 0.18s;
+    animation: buttonGlow 3s ease-in-out infinite;
+  }
+  .btn-primary { background: var(--grad-warm); color: #fff; }
+  .btn:hover { transform: scale(1.03); filter: brightness(1.05); }
+  .btn:active { transform: scale(0.99); }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1.5px solid var(--accent-teal);
+    color: var(--accent-teal);
+    animation: none;
+    border-radius: 14px;
+    padding: 13px 24px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .btn-ghost:hover { background: rgba(91,184,170,0.10); transform: scale(1.02); }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 8px; }
+
+  /* ---------- LOG ---------- */
+  .log-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    flex-wrap: wrap; gap: 14px; margin: 50px 0 22px;
+  }
+  .log-head h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--text-dark);
+  }
+  .log-head h2 em { font-style: italic; color: var(--accent-matcha); }
+  .log-count {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .entry {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-left: 5px solid var(--accent-coral);
+    border-radius: 16px;
+    padding: 24px 26px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-soft);
+    transition: box-shadow 0.2s;
+  }
+  .entry:hover { box-shadow: var(--shadow-card); }
+  .entry-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 14px; margin-bottom: 14px;
+  }
+  .entry-date {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-teal);
+    text-transform: uppercase;
+  }
+  .entry-moods { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+  .entry-mood-tag {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(244,163,154,0.18);
+    color: var(--accent-coral-deep);
+  }
+  .entry-block { margin-bottom: 13px; }
+  .entry-block .q {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+  }
+  .entry-block .a {
+    font-family: var(--font-display);
+    font-size: 1.02rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+  .entry-block .a.plain { font-family: var(--font-body); font-size: 0.98rem; color: var(--text-body); }
+  .entry-del {
+    background: none; border: none; cursor: pointer;
+    font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em;
+    color: var(--driftwood); text-transform: uppercase; padding: 4px 0;
+    transition: color 0.18s; white-space: nowrap;
+  }
+  .entry-del:hover { color: var(--watermelon); }
+
+  .empty {
+    text-align: center; padding: 50px 20px;
+    color: var(--text-muted);
+    border: 1.5px dashed var(--border-soft);
+    border-radius: 18px;
+    background: rgba(255,255,255,0.5);
+  }
+  .empty .em-ico { font-size: 2rem; margin-bottom: 10px; }
+  .empty em { font-family: var(--font-display); font-style: italic; color: var(--accent-coral-deep); }
+
+  .toast {
+    position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%) translateY(120%);
+    background: var(--text-dark); color: #fff;
+    font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.05em;
+    padding: 13px 24px; border-radius: 12px; z-index: 10000;
+    transition: transform 0.35s cubic-bezier(.2,.9,.3,1.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .footer-note {
+    text-align: center; margin-top: 46px;
+    font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+  .footer-note a { color: var(--accent-teal); text-decoration: none; }
+  .footer-note a:hover { text-decoration: underline; }
+
+  /* ---------- PRINT ---------- */
+  @media print {
+    @page { margin: 18mm 16mm; }
+    body {
+      background: #fff !important;
+      color: #000;
+      padding: 0;
+    }
+    .no-print { display: none !important; }
+    .wrap { max-width: 100%; padding: 0; }
+    .print-cover { display: block !important; }
+    .entry {
+      box-shadow: none;
+      border: 1px solid #ccc;
+      border-left: 4px solid #888;
+      page-break-inside: avoid;
+      margin-bottom: 14px;
+    }
+    .entry-date { color: #555; }
+    .entry-block .a { color: #111; }
+    .entry-mood-tag { background: #f0ece6; color: #555; }
+    .log-head h2, .log-head h2 em { color: #111; -webkit-text-fill-color: #111; }
+  }
+  .print-cover { display: none; }
+  .print-cover h1 {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 700;
+    font-size: 30pt; color: #000; margin-bottom: 6px; text-align: center;
+  }
+  .print-cover .pc-sub {
+    text-align: center; font-family: 'Space Grotesk', sans-serif;
+    color: #444; margin-bottom: 4px;
+  }
+  .print-cover .pc-meta {
+    text-align: center; font-family: 'JetBrains Mono', monospace;
+    font-size: 9pt; letter-spacing: 0.1em; text-transform: uppercase; color: #777;
+    margin-bottom: 26px; padding-bottom: 18px; border-bottom: 1.5px solid #ddd;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Aligned Expat Roots · A Gentle Practice</div>
+    <h1>
+      <span class="line-script">The Homesickness</span>
+      <span class="line-grotesk">Support Journal</span>
+    </h1>
+    <p class="sub">A structured journal for working through homesickness, not suppressing it. Prompts that help you process what you're missing <em>without spiralling.</em></p>
+  </header>
+
+  <!-- ENTRY FORM -->
+  <section class="card no-print">
+    <div class="card-title">Today's <em>check-in</em></div>
+    <p class="card-intro">Move through each prompt slowly. There are no wrong answers. The goal is to feel it, name it, and find your footing again.</p>
+
+    <div class="field">
+      <label>Date</label>
+      <input type="date" id="f-date" />
+    </div>
+
+    <div class="field">
+      <label>How heavy does it feel right now?</label>
+      <div class="mood-row" id="mood-row">
+        <span class="mood-chip" data-mood="Tender">Tender</span>
+        <span class="mood-chip" data-mood="Wobbly">Wobbly</span>
+        <span class="mood-chip" data-mood="Aching">Aching</span>
+        <span class="mood-chip" data-mood="Numb">Numb</span>
+        <span class="mood-chip" data-mood="Nostalgic">Nostalgic</span>
+        <span class="mood-chip" data-mood="Restless">Restless</span>
+        <span class="mood-chip" data-mood="Steady-ish">Steady-ish</span>
+        <span class="mood-chip" data-mood="Grateful">Grateful</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Prompt 01 · Name it</label>
+      <span class="prompt">What exactly am I missing today? Be specific. A person, a smell, a street, a routine?</span>
+      <textarea id="f-missing" placeholder="The way the kitchen smelled on Sunday mornings..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Prompt 02 · Honour it</label>
+      <span class="prompt">What does this thing I'm missing actually give me? What need is underneath it?</span>
+      <textarea id="f-need" placeholder="It gave me a feeling of belonging, of being known without explaining myself..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Prompt 03 · Interrupt the spiral</label>
+      <span class="prompt">If my mind is catastrophising ("I made a mistake leaving"), what's a truer, kinder sentence?</span>
+      <textarea id="f-reframe" placeholder="I can miss my old home AND know this move was right for me. Both are true."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Prompt 04 · Bring some of it here</label>
+      <span class="prompt">What's one small way I can recreate a piece of what I'm missing, right where I am?</span>
+      <textarea id="f-bridge" placeholder="Call mum on Sunday. Cook the dish. Find a cafe that feels like 'mine'."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Prompt 05 · Anchor</label>
+      <span class="prompt">Name one thing about my life here, today, that I would actually miss if it were gone.</span>
+      <textarea id="f-anchor" placeholder="The light in my apartment in the afternoon..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>One line for future me</label>
+      <input type="text" id="f-note" placeholder="A note to read next time the wave hits..." />
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-primary" id="save-btn">Save to my journal</button>
+      <button class="btn-ghost" id="clear-btn">Clear form</button>
+    </div>
+  </section>
+
+  <!-- LOG -->
+  <div class="log-head">
+    <h2>Your <em>journal log</em></h2>
+    <div class="btn-row no-print" style="margin:0;">
+      <span class="log-count" id="log-count">0 entries</span>
+      <button class="btn-ghost no-print" id="print-btn">Print as PDF</button>
+    </div>
+  </div>
+
+  <!-- print-only cover -->
+  <div class="print-cover" id="print-cover">
+    <h1>The Homesickness Support Journal</h1>
+    <p class="pc-sub">Aligned Expat Roots</p>
+    <p class="pc-meta" id="pc-meta">Printed log</p>
+  </div>
+
+  <div id="log"></div>
+
+  <div class="footer-note no-print">
+    Your entries are saved only in this browser session. Print to PDF to keep them forever.<br>
+    Come sit with the community at <a href="https://skool.com/earthway-sanctuary-3366/about" target="_blank">Earthway Sanctuary</a>.
+  </div>
+
+</div>
+
+<div class="toast" id="toast">Saved to your journal</div>
+
+<script>
+  // ---------- state ----------
+  let entries = [];
+  let selectedMoods = new Set();
+
+  // set today's date
+  const dateInput = document.getElementById('f-date');
+  dateInput.value = new Date().toISOString().slice(0,10);
+
+  // ---------- mood chips ----------
+  document.getElementById('mood-row').addEventListener('click', (e) => {
+    const chip = e.target.closest('.mood-chip');
+    if (!chip) return;
+    const m = chip.dataset.mood;
+    if (selectedMoods.has(m)) { selectedMoods.delete(m); chip.classList.remove('active'); }
+    else { selectedMoods.add(m); chip.classList.add('active'); }
+  });
+
+  // ---------- helpers ----------
+  function prettyDate(iso) {
+    if (!iso) return '';
+    const d = new Date(iso + 'T00:00:00');
+    return d.toLocaleDateString('en-GB', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  }
+  function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+  // ---------- save ----------
+  document.getElementById('save-btn').addEventListener('click', () => {
+    const e = {
+      id: Date.now(),
+      date: dateInput.value,
+      moods: Array.from(selectedMoods),
+      missing: document.getElementById('f-missing').value.trim(),
+      need: document.getElementById('f-need').value.trim(),
+      reframe: document.getElementById('f-reframe').value.trim(),
+      bridge: document.getElementById('f-bridge').value.trim(),
+      anchor: document.getElementById('f-anchor').value.trim(),
+      note: document.getElementById('f-note').value.trim()
+    };
+    if (!e.missing && !e.need && !e.reframe && !e.bridge && !e.anchor && !e.note && e.moods.length===0) {
+      showToast('Write something first, love'); return;
+    }
+    entries.unshift(e);
+    render();
+    clearForm();
+    showToast('Saved to your journal');
+  });
+
+  document.getElementById('clear-btn').addEventListener('click', clearForm);
+
+  function clearForm() {
+    ['f-missing','f-need','f-reframe','f-bridge','f-anchor','f-note'].forEach(id => document.getElementById(id).value='');
+    selectedMoods.clear();
+    document.querySelectorAll('.mood-chip').forEach(c => c.classList.remove('active'));
+    dateInput.value = new Date().toISOString().slice(0,10);
+  }
+
+  // ---------- delete ----------
+  function del(id) {
+    entries = entries.filter(x => x.id !== id);
+    render();
+    showToast('Entry removed');
+  }
+
+  // ---------- render ----------
+  const blocks = [
+    ['What I\'m missing', 'missing', false],
+    ['What it gives me', 'need', false],
+    ['A kinder, truer sentence', 'reframe', false],
+    ['Bringing a piece of it here', 'bridge', false],
+    ['My anchor here, today', 'anchor', false],
+    ['Note to future me', 'note', true]
+  ];
+
+  function render() {
+    const log = document.getElementById('log');
+    const count = document.getElementById('log-count');
+    count.textContent = entries.length + (entries.length === 1 ? ' entry' : ' entries');
+
+    if (entries.length === 0) {
+      log.innerHTML = '<div class="empty"><div class="em-ico">🌿</div>No entries yet. Your first <em>check-in</em> will live here.</div>';
+      return;
+    }
+
+    log.innerHTML = entries.map(e => {
+      const moodTags = e.moods.map(m => '<span class="entry-mood-tag">'+esc(m)+'</span>').join('');
+      const body = blocks.map(([label, key, plain]) => {
+        if (!e[key]) return '';
+        return '<div class="entry-block"><div class="q">'+label+'</div><div class="a '+(plain?'plain':'')+'">'+esc(e[key])+'</div></div>';
+      }).join('');
+      return '<div class="entry">'
+        + '<div class="entry-top"><span class="entry-date">'+prettyDate(e.date)+'</span>'
+        + '<button class="entry-del no-print" onclick="del('+e.id+')">Delete</button></div>'
+        + (moodTags ? '<div class="entry-moods">'+moodTags+'</div>' : '')
+        + body
+        + '</div>';
+    }).join('');
+  }
+
+  // ---------- print ----------
+  document.getElementById('print-btn').addEventListener('click', () => {
+    if (entries.length === 0) { showToast('Save an entry before printing'); return; }
+    document.getElementById('pc-meta').textContent = 'Printed ' + new Date().toLocaleDateString('en-GB', {day:'numeric',month:'long',year:'numeric'}) + ' · ' + entries.length + ' entr' + (entries.length===1?'y':'ies');
+    window.print();
+  });
+
+  // ---------- toast ----------
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // ---------- sparkle trail ----------
+  const sparkleColors = ['#bfe07a','#f4a39a','#7dcfc4','#8fb83e'];
+  const sparkleCSS = document.createElement('style');
+  sparkleCSS.textContent = '@keyframes sparkleAnim{0%{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0deg);}100%{opacity:0;transform:translate(-50%,-50%) scale(0.2) rotate(180deg) translateY(-20px);}}';
+  document.head.appendChild(sparkleCSS);
+  function createSparkle(x,y){
+    const s=document.createElement('div');
+    const c=sparkleColors[Math.floor(Math.random()*sparkleColors.length)];
+    const size=Math.random()*7+4;
+    s.style.cssText='position:fixed;left:'+x+'px;top:'+y+'px;width:'+size+'px;height:'+size+'px;pointer-events:none;z-index:9999;transform:translate(-50%,-50%) rotate(45deg);background:'+c+';clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);animation:sparkleAnim 0.7s ease-out forwards;opacity:0.85;';
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(),700);
+  }
+  let lastSparkle=0;
+  document.addEventListener('mousemove',(e)=>{
+    const now=Date.now();
+    if(now-lastSparkle>45){ createSparkle(e.clientX,e.clientY); lastSparkle=now; }
+  });
+
+  render();
+</script>
+</body>
+</html>
